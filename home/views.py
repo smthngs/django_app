@@ -13,9 +13,9 @@ def home_view(request):
     else:
         yazilar = Yazi.objects.all()
 
-    paginator = Paginator(yazilar, 12)
-    page_number = request.GET.get('sayfa')
-    page_obj = paginator.get_page(page_number)
+    # paginator = Paginator(yazilar, 12)
+    # page_number = request.GET.get('sayfa')
+    # page_obj = paginator.get_page(page_number)
 
     mevcutsayfa = "2"
-    return render(request, "index.html", {"mevcutsayfa": mevcutsayfa, "page_obj": page_obj})
+    return render(request, "index.html", {"mevcutsayfa": mevcutsayfa, "yazilar": yazilar})
