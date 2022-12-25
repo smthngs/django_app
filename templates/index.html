@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Ana Sayfa{% endblock %}
+{% block section %}
+
+<div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="{% static 'img/hero.jpg' %}">
+    <form class="d-flex tm-search-form" action="">
+        <input class="form-control tm-search-input" type="text" name="kelime" placeholder="Arama Yap" aria-label="Search">
+        <button class="btn btn-outline-success tm-search-btn" type="submit">
+            <i class="fas fa-search"></i>
+        </button>
+    </form>
+</div>
+
+<div class="container-fluid tm-container-content tm-mt-60">
+        <div class="row mb-4">
+            <h2 class="col-6 tm-text-primary">
+                Kitaplar
+            </h2>
+            <div class="col-6 d-flex justify-content-end align-items-center">
+                <form action="" class="tm-text-primary">
+                    <!-- Page <input type="text" value="1" size="1" class="tm-input-paging tm-text-primary"> of 200  -->
+                </form>
+            </div>
+        </div>
+
+        <div class="row tm-mb-90 tm-gallery">
+
+            {% for yazi in page_obj %}
+
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5" >
+                    <figure class="effect-ming tm-video-item" >
+                        <img src="{{ yazi.image.url }}" alt="Image" class="img-fluid" style="height: 197px; margin: auto;">
+                        <figcaption class="d-flex align-items-center justify-content-center">
+                            <h2>{{ yazi.baslik }}</h2>
+                            <a href="yazi/{{ yazi.slug }}" >View more</a>
+
+                        </figcaption>
+                    </figure>
+                    <div class="d-flex justify-content-between tm-text-black">
+                        <span class="tm-text-black">{{ yazi.baslik }}-{{ yazi.yazar }}</span>
+                        <span class="tm-text-gray">{{ yazi.goruntulenme }}</span>
+                    </div>
+
+                </div>
+
+            {% endfor %}
+            
+
+        </div>
+
+        </div> <!-- row -->
+    <!--
+        <div class="pagination row tm-mb-90">
+            <div class="col-12 d-flex justify-content-between align-items-center tm-paging-col">
+
+                <a class="step-links btn btn-primary tm-btn-prev mb-2 {% if not yazilar.has_previous %} disabled {% endif %}" href="" >Önceki Sayfa</a>
+
+                <div class="tm-paging d-flex">
+                    <a href="javascript:void(0);" class="active tm-paging-link">1</a>
+                    <a href="javascript:void(0);" class="tm-paging-link">2</a>
+                    <a href="javascript:void(0);" class="tm-paging-link">3</a>
+                    <a href="javascript:void(0);" class="tm-paging-link">4</a>
+                </div>
+
+
+                <a class="btn btn-primary tm-btn-next{% if not yazilar.has_next %} disabled {% endif %}" href="" >Sonraki Sayfa</a>
+
+            </div>
+        </div>
+        -->
+        <div class="pagination row tm-mb-90">
+            <span class="col-12 d-flex justify-content-between align-items-center tm-paging-col">
+                {% if page_obj.has_previous %}
+                    <a class="step-links btn btn-primary tm-btn-prev mb-2" href="?sayfa=1{% if request.GET.kelime %}&kelime={{ request.GET.kelime }}{% endif %}">&laquo; first</a><br>
+                    <a class="step-links btn btn-primary tm-btn-prev mb-2" href="?sayfa={{ page_obj.previous_page_number }}{% if request.GET.kelime %}&kelime={{ request.GET.kelime }}{% endif %}">previous</a>
+                {% endif %}
+                {% if not page_obj.has_previous %}
+                    <a class="step-links btn btn-primary tm-btn-prev mb-2 disabled" >&laquo; first</a><br>
+                    <a class="step-links btn btn-primary tm-btn-prev mb-2 disabled" >previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a class="step-links btn btn-primary tm-btn-prev mb-2" href="?sayfa={{ page_obj.next_page_number }}{% if request.GET.kelime %}&kelime={{ request.GET.kelime }}{% endif %}">next</a><br>
+                    <a class="step-links btn btn-primary tm-btn-prev mb-2" href="?sayfa={{ page_obj.paginator.num_pages }}{% if request.GET.kelime %}&kelime={{ request.GET.kelime }}{% endif %}">last &raquo;</a>
+                {% endif %}
+                {% if not page_obj.has_next %}
+                    <a class="step-links btn btn-primary tm-btn-prev mb-2 disabled" >next</a><br>
+                    <a class="step-links btn btn-primary tm-btn-prev mb-2 disabled" >last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+
+{% endblock %}
+
+
+
+

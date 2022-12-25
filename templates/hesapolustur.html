@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Hesap Oluştur
+{% endblock %}
+
+
+{% block section %}
+
+    <div class="container py-5">
+	    <h1>Hesap Oluştur</h1>
+	    <form method="POST">
+	    	{% csrf_token %}
+            {{ form.as_p }}
+		    {{ register_form }}
+		    <button class="btn btn-primary" type="submit">Hesap oluştur</button>
+	    </form>
+        <p class="text-center">Eğer bir hesabın varsa <a href="/giris">giriş</a> yap.</p>
+    </div>
+{% endblock %}
