@@ -1,5 +1,4 @@
 from django.db import models
-from ckeditor.fields import RichTextField
 from django.utils.text import slugify
 from django.urls import reverse
 from django.utils.crypto import get_random_string
