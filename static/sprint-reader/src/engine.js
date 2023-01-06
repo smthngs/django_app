@@ -198,10 +198,10 @@ function splitTextToArray_FirstPass(selectedText) {
 	
 	// çok önemli!
 	var spacedText = htmlEntitiesDecode(selectedText);
-	if (madvEnableSpaceInsertion == 'true') {
-		selectedText = selectedText.replace(/([.,?!:;])(?! )/g, '$1 ');
-	}
-	spacedText = selectedText;
+	// if (madvEnableSpaceInsertion == 'true') {
+	// 	selectedText = selectedText.replace(/([.,?!:;])(?! )/g, '$1 ');
+	// }
+	spacedText = htmlEntitiesEncode(selectedText);;
 	
 	// --------------------------------------------------------------------
 	// STEP 2
