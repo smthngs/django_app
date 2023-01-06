@@ -195,11 +195,13 @@ function splitTextToArray_FirstPass(selectedText) {
 	// no space in between separators. This method manually 
 	// adds a space character after a detected separator
 	// has no space character
-	var spacedText = htmlEntitiesDecode(selectedText);
-	if (madvEnableSpaceInsertion == 'true') {
-		selectedText = selectedText.replace(/([.,?!:;])(?! )/g, '$1 ');
-	}
-	spacedText = htmlEntitiesEncode(selectedText);
+	
+	// çok önemli!
+	// var spacedText = htmlEntitiesDecode(selectedText);
+	// if (madvEnableSpaceInsertion == 'true') {
+	// 	selectedText = selectedText.replace(/([.,?!:;])(?! )/g, '$1 ');
+	// }
+	// spacedText = htmlEntitiesEncode(selectedText);
 	
 	// --------------------------------------------------------------------
 	// STEP 2
